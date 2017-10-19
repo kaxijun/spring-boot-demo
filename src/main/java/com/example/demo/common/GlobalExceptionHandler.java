@@ -1,6 +1,5 @@
 package com.example.demo.common;
 
-import com.example.demo.pojo.RspBody;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +14,7 @@ class GlobalExceptionHandler {
         RspBody<String> r = new RspBody<String>();
         r.setMessage(e.getMessage());
         r.setUrl(req.getRequestURL().toString());
-        r.setData("some data");
+        r.setData(null);
         r.setCode(RspBody.ERROR);
         return r;
     }

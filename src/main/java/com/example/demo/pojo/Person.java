@@ -14,9 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @Log4j
+@Getter
+@Setter
 public class Person {
-    @Getter
-    @Setter
+
+    private long id;
+
     @Value("${prop.name}")
     private String name;
+
+    private int age;
+
+
 }
