@@ -19,11 +19,23 @@ public class ApiController {
     @Autowired
     private PersonService personService;
 
+    /**
+     * hello world
+     * @param req
+     * @return
+     */
     @RequestMapping("/hello")
     public Object hello(HttpServletRequest req){
         return getRspBody(req ,"hello " + person.getName());
     }
 
+    /**
+     * hello mybatis && 错误处理
+     * @param req
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/findByName")
     public Object findByName(HttpServletRequest req, Long id) throws Exception {
         if(null == id) throw new Exception("id is required");
@@ -31,6 +43,14 @@ public class ApiController {
         return getRspBody(req, u);
     }
 
+    /**
+     * insert pojo
+     * @param req
+     * @param age
+     * @param name
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/insert")
     public Object insert(HttpServletRequest req, Integer age, String name) throws Exception {
         if(null == age || null == name) throw new Exception("params is required");

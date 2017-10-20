@@ -9,25 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
+@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
 public class ApplicationTests {
-
-	@Test
-	public void contextLoads() {
-
-	}
 
 	@Autowired
 	private PersonService personService;
 
 	@Test
-	@Rollback
+	@Rollback(true) // default true
 	public void findByName() throws Exception {
-		personService.insertPerson("AAA", 20);
-		Person u = personService.findById(2l);
-		Assert.assertEquals(20, u.getAge());
+		personService.insertPerson("bbb", 22);
+        Person u = personService.findById(3l);
+        System.out.println(u.toString());
+        Assert.assertEquals(21, u.getAge());
 	}
 }
 
