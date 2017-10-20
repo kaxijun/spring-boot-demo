@@ -4,6 +4,8 @@ import com.example.demo.pojo.Person;
 import com.example.demo.common.RspBody;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +42,9 @@ public class ApiController {
     public Object findByName(HttpServletRequest req, Long id) throws Exception {
         if(null == id) throw new Exception("id is required");
         Person u = personService.findById(id);
+        System.out.println("第一次查询:" + u);
+        Person u2 = personService.findById(id);
+        System.out.println("第二次查询:" + u2);
         return getRspBody(req, u);
     }
 

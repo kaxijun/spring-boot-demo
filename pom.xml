@@ -59,7 +59,6 @@
 			<version>${mysql.version}</version>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>
