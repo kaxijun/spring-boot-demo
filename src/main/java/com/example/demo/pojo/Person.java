@@ -1,12 +1,12 @@
 package com.example.demo.pojo;
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 
 /**
  * Created by lzw on 2017/10/17.
@@ -16,14 +16,18 @@ import org.springframework.stereotype.Component;
 @Log4j
 @Getter
 @Setter
-public class Person {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Person implements Serializable {
 
-    private long id;
+    private static final long serialVersionUID = -1L;
+
+    private Long id;
 
     @Value("${prop.name}")
     private String name;
 
-    private int age;
+    private Integer age;
 
 
 }

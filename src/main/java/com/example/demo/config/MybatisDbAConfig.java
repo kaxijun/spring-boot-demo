@@ -19,7 +19,6 @@ public class MybatisDbAConfig {
     @Qualifier("primaryDS")   // 指定注入的bean的名字
     private DataSource ds1;
 
-
     @Bean
     public SqlSessionFactory sqlSessionFactory1() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();

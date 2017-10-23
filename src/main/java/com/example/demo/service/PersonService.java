@@ -3,8 +3,6 @@ package com.example.demo.service;
 import com.example.demo.mapper.PersonMapper;
 import com.example.demo.pojo.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service

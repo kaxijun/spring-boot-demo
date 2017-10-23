@@ -14,7 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 public interface PersonMapper {
 
     @Select("SELECT * FROM PERSON WHERE ID = #{id}")
-    @Cacheable
+    @Cacheable( )
     // @Cacheable(key = "#p0", condition = "#p0.length() < 3")
     Person findById(@Param("id") Long id);
     @CachePut

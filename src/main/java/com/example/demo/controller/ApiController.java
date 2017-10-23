@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.pojo.Person;
 import com.example.demo.common.RspBody;
+import com.example.demo.service.MailService;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -20,6 +21,19 @@ public class ApiController {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private MailService mailService;
+
+    private <T> RspBody<T> getRspBody(HttpServletRequest req, T data) {
+        RspBody<T> r = new RspBody<>();
+        r.setMessage("ok");
+        r.setUrl(req.getRequestURL().toString());
+        r.setData(data);
+        r.setCode(RspBody.OK);
+        return r;
+
+    }
 
     /**
      * hello world
@@ -42,9 +56,6 @@ public class ApiController {
     public Object findByName(HttpServletRequest req, Long id) throws Exception {
         if(null == id) throw new Exception("id is required");
         Person u = personService.findById(id);
-        System.out.println("第一次查询:" + u);
-        Person u2 = personService.findById(id);
-        System.out.println("第二次查询:" + u2);
         return getRspBody(req, u);
     }
 
@@ -63,14 +74,23 @@ public class ApiController {
         return getRspBody(req, "ok");
     }
 
-
-    private <T> RspBody<T> getRspBody(HttpServletRequest req, T data) {
-        RspBody<T> r = new RspBody<>();
-        r.setMessage("ok");
-        r.setUrl(req.getRequestURL().toString());
-        r.setData(data);
-        r.setCode(RspBody.OK);
-        return r;
-
+    @RequestMapping("/mail/simple")
+    public Object sendSimpleMail(HttpServletRequest req) throws Exception {
+        mailService.sendSimpleMail();
+        return getRspBody(req, "ok");
     }
+
+    @RequestMapping("/mail/attachments")
+    public Object sendAttachmentsMail(HttpServletRequest req) throws Exception {
+        mailService.sendAttachmentsMail();
+        return getRspBody(req, "ok");
+    }
+    @RequestMapping("/mail/model")
+    public Object sendModelMails(HttpServletRequest req) throws Exception {
+        mailService.sendModelMails();
+        return getRspBody(req, "ok");
+    }
+
+
+
 }
