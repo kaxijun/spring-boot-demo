@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.pojo.Person;
 import com.example.demo.common.RspBody;
+import com.example.demo.pojo.Person;
 import com.example.demo.service.MailService;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -71,6 +69,13 @@ public class ApiController {
     public Object insert(HttpServletRequest req, Integer age, String name) throws Exception {
         if(null == age || null == name) throw new Exception("params is required");
         personService.insertPerson(name, age);
+        return getRspBody(req, "ok");
+    }
+
+    @RequestMapping("/delete")
+    public Object delete(HttpServletRequest req, Long id) throws Exception {
+        if(null == id) throw new Exception("id is required");
+        personService.deletePerson(id);
         return getRspBody(req, "ok");
     }
 

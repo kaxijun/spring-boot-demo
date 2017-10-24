@@ -69,7 +69,7 @@ public class RedisConfig extends CachingConfigurerSupport {
                 //and all method parameters appended.
                 StringBuilder sb = new StringBuilder();
                 sb.append(o.getClass().getName());
-                sb.append(method.getName());
+//                sb.append(method.getName()); // 这里用methodName会导致无法删除
                 for (Object obj : objects) {
                     sb.append(obj.toString());
                 }
