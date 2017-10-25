@@ -19,3 +19,9 @@ class GlobalExceptionHandler {
         return r;
     }
 }
+
+// 指向所有带有注解@RestController的控制器
+//@ControllerAdvice(annotations = RestController.class)
+
+// 指向所有指定包中的控制器
+//@ControllerAdvice("org.example.controllers")

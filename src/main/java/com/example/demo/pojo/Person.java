@@ -12,10 +12,10 @@ import java.io.Serializable;
  * Created by lzw on 2017/10/17.
  */
 @Component
-@Data
+@Data  //包括了 @ToString, @EqualsAndHashCode @Getter  @Setter
 @Log4j
-@Getter
-@Setter
+//@Getter
+//@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person implements Serializable {
