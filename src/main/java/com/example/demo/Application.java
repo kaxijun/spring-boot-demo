@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching  // 允许启动缓存
 //@EnableScheduling // 允许启动定时任务
 @EnableAsync
+// @mapperScan("")
 
 public class Application {
 
